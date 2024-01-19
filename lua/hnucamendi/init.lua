@@ -1,1 +1,5 @@
-return { }
+require("hnucamendi.lazy")
+require("hnucamendi.plugins.treesitter")
+require("hnucamendi.plugins.telescope")
+require("hnucamendi.remap")
+require("hnucamendi.set")
