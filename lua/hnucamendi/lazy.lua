@@ -25,11 +25,12 @@ return require("lazy").setup({
   --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
+    'VonHeikemen/lsp-zero.nvim',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -134,7 +135,7 @@ return require("lazy").setup({
 
   -- Useful plugin to show you pending keybinds.
     -- consider deleting
- -- { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
 
 --       {
 --    'rose-pine/neovim',

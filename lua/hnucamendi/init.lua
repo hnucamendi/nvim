@@ -1,5 +1,7 @@
 require("hnucamendi.lazy")
 require("hnucamendi.plugins.treesitter")
 require("hnucamendi.plugins.telescope")
+require("hnucamendi.plugins.lsp")
+require("hnucamendi.plugins.fugitive")
 require("hnucamendi.remap")
 require("hnucamendi.set")
