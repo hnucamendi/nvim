@@ -46,13 +46,13 @@ return {
         harpoon:list():add()
       end, { desc = 'add current file to harpoon buffer' })
 
-      -- vim.keymap.set('n', '<C-e>', function()
-      --   harpoon.ui:toggle_quick_menu(harpoon:list())
-      -- end, { desc = 'toggle quick harpoon quick select menu' })
-
       vim.keymap.set('n', '<C-e>', function()
-        toggle_telescope(harpoon:list())
-      end, { desc = 'open hapoon window' })
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, { desc = 'toggle quick harpoon quick select menu' })
+
+      -- vim.keymap.set('n', '<C-e>', function()
+      --   toggle_telescope(harpoon:list())
+      -- end, { desc = 'open hapoon window' })
 
       vim.keymap.set('n', '<C-i>', function()
         harpoon:list():select(1)
@@ -69,7 +69,7 @@ return {
 
       vim.keymap.set('n', '<C-S-P>', function()
         harpoon:list():prev()
-      end)
+      end, { desc = 'testing' })
       vim.keymap.set('n', '<C-S-N>', function()
         harpoon:list():next()
       end)
@@ -103,7 +103,7 @@ return {
           conditionals = { 'italic' },
           loops = {},
           functions = {},
-          keywords = {},
+          keywords = { 'italic' },
           strings = {},
           variables = {},
           numbers = {},
