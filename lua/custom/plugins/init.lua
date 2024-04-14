@@ -38,7 +38,6 @@ return {
         },
         view = {
           centralize_selection = true,
-          relativenumber = true,
         },
         filters = {
           dotfiles = false,
