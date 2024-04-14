@@ -149,4 +149,16 @@ return {
       vim.cmd.colorscheme 'catppuccin'
     end,
   },
+  {
+    'tpope/vim-fugitive',
+    config = function()
+      vim.keymap.set('n', '<leader>G', ':Git<CR>')
+    end,
+  },
+  {
+    'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<leader>Gd', ':UndotreeShow<CR>')
+    end,
+  },
 }
