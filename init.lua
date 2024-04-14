@@ -80,7 +80,7 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- NvimTree
-vim.keymap.set('n', '<leader>E', ':NvimTreeToggle<cr>', { desc = 'toggle nvim tree window open and closed' })
+vim.keymap.set('n', '<leader>E', ':NvimTreeFindFileToggle<cr>', { desc = 'toggle nvim tree window open and closed' })
 
 -- Move text up and down
 vim.keymap.set('x', 'J', ":move '>+1<CR>gv-gv")

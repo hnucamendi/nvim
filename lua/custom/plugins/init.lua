@@ -28,7 +28,23 @@ return {
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('nvim-tree').setup {}
+      require('nvim-tree').setup {
+        git = {
+          enable = true,
+        },
+        disable_netrw = true,
+        sort = {
+          sorter = 'name',
+        },
+        view = {
+          centralize_selection = true,
+          relativenumber = true,
+        },
+        filters = {
+          dotfiles = false,
+          git_ignored = false,
+        },
+      }
     end,
   },
   {
