@@ -161,4 +161,8 @@ return {
       vim.keymap.set('n', '<leader>Gd', ':UndotreeShow<CR>')
     end,
   },
+  {
+    'jesseduffield/lazygit',
+    config = function() end,
+  },
 }
