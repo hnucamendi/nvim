@@ -151,7 +151,11 @@ return {
     -- optional for floating window border decoration
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-lua/telescope.nvim',
     },
+    config = function()
+      require('telescope').load_extension 'lazygit'
+    end,
     keys = {
       { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
       { '<leader>lc', '<cmd>LazyGitCurrentFile<cr>', desc = 'LazyGit Current File' },
