@@ -2,24 +2,6 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-local function toggle_telescope(harpoon_files)
-  local conf = require('telescope.config').values
-  local file_paths = {}
-  for _, item in ipairs(harpoon_files.items) do
-    table.insert(file_paths, item.value)
-  end
-
-  require('telescope.pickers')
-    .new({}, {
-      prompt_title = 'Harpoon',
-      finder = require('telescope.finders').new_table {
-        results = file_paths,
-      },
-      previewer = conf.file_previewer {},
-      sorter = conf.generic_sorter {},
-    })
-    :find()
-end
 
 return {
   {
@@ -65,27 +47,23 @@ return {
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, { desc = 'toggle quick harpoon quick select menu' })
 
-      -- vim.keymap.set('n', '<C-e>', function()
-      --   toggle_telescope(harpoon:list())
-      -- end, { desc = 'open hapoon window' })
-
-      vim.keymap.set('n', '<C-a>', function()
+      vim.keymap.set('n', '<C-j>', function()
         harpoon:list():select(1)
       end, { desc = 'switch to harpoon file in slot 1' })
       vim.keymap.set('n', '<C-i>', function()
         harpoon:list():select(2)
       end, { desc = 'switch to harpoon file in slot 2' })
-      vim.keymap.set('n', '<C-s>', function()
+      vim.keymap.set('n', '<C-o>', function()
         harpoon:list():select(3)
       end, { desc = 'switch to harpoon file in slot 3' })
-      vim.keymap.set('n', '<C-n>', function()
+      vim.keymap.set('n', '<C-p>', function()
         harpoon:list():select(4)
       end, { desc = 'switch to harpoon file in slot 4' })
 
-      vim.keymap.set('n', '<C-S-P>', function()
+      vim.keymap.set('n', '<leader><', function()
         harpoon:list():prev()
       end, { desc = 'testing' })
-      vim.keymap.set('n', '<C-S-N>', function()
+      vim.keymap.set('n', '<leader>>', function()
         harpoon:list():next()
       end)
     end,
@@ -162,7 +140,23 @@ return {
     end,
   },
   {
-    'jesseduffield/lazygit',
-    config = function() end,
+    'kdheepak/lazygit.nvim',
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+      { '<leader>lc', '<cmd>LazyGitCurrentFile<cr>', desc = 'LazyGit Current File' },
+      { '<leader>lf', '<cmd>LazyGitFilterCurrentFile<cr>', desc = 'LazyGit Current File' },
+      { '<leader>lF', '<cmd>LazyGitFilter<cr>', desc = 'LazyGit Current File' },
+    },
   },
 }
