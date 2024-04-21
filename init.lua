@@ -214,13 +214,19 @@ require('lazy').setup({
         end, { desc = 'navigate to previous hunk' })
 
         -- Actions
-        map('n', '<leader>gp', gitsigns.preview_hunk, { desc = 'preview hunk' })
-        map('n', '<leader>gb', function()
+        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'preview hunk' })
+
+        map('n', '<leader>hb', function()
           gitsigns.blame_line { full = true }
         end, { desc = 'open full blame line' })
-        map('n', '<leader>gd', function()
-          gitsigns.diffthis '~'
-        end, { desc = 'open git diff view from last commit' })
+
+        map('v', '<leader>hs', function()
+          gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'V' }
+        end, { desc = 'stage hunk' })
+
+        map('v', '<leader>hr', function()
+          gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'V' }
+        end, { desc = 'reset hunk' })
 
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select hunk in visual mode' })
