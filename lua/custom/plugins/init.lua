@@ -139,8 +139,6 @@ return {
   {
     'tpope/vim-commentary',
   },
-  -- Charles the string here to sosadkflja;skldfjasd;klfj;klsad mething else to make a conflict again here
-  -- makding kaldsjf;lksajdfkl;a js
   {
     'mbbill/undotree',
     config = function()
