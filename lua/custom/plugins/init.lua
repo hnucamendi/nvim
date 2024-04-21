@@ -47,7 +47,7 @@ return {
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, { desc = 'toggle quick harpoon quick select menu' })
 
-      vim.keymap.set('n', '<C-j>', function()
+      vim.keymap.set('n', '<C-n>', function()
         harpoon:list():select(1)
       end, { desc = 'switch to harpoon file in slot 1' })
       vim.keymap.set('n', '<C-i>', function()
@@ -134,33 +134,17 @@ return {
     end,
   },
   {
-    'mbbill/undotree',
-    config = function()
-      vim.keymap.set('n', '<leader>Gd', ':UndotreeShow<CR>')
-    end,
+    'tpope/vim-dadbod',
   },
   {
-    'kdheepak/lazygit.nvim',
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-lua/telescope.nvim',
-    },
-    config = function()
-      require('telescope').load_extension 'lazygit'
-    end,
-    keys = {
-      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
-      { '<leader>lc', '<cmd>LazyGitCurrentFile<cr>', desc = 'LazyGit Current File' },
-      { '<leader>lf', '<cmd>LazyGitFilterCurrentFile<cr>', desc = 'LazyGit Current File' },
-      { '<leader>lF', '<cmd>LazyGitFilter<cr>', desc = 'LazyGit Current File' },
-    },
+    'tpope/vim-commentary',
   },
+  {
+    'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<leader>ud', ':UndotreeShow<CR>')
+    end,
+  },
+  { 'wakatime/vim-wakatime', lazy = false },
+  { 'kristijanhusak/vim-dadbod-ui' },
 }
