@@ -620,6 +620,7 @@ require('lazy').setup({
         typescriptreact = { { 'prettier', 'prettierd' } },
         go = { { 'goimports', 'gofmt' } },
         json = { { 'prettierd', 'prettier' } },
+        sql = { { 'sqlfmt' } },
       },
     },
   },
