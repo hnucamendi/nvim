@@ -621,6 +621,7 @@ require('lazy').setup({
         go = { { 'goimports', 'gofmt' } },
         json = { { 'prettierd', 'prettier' } },
         sql = { { 'sqlfmt' } },
+        java = { { 'clang-format' } },
       },
     },
   },

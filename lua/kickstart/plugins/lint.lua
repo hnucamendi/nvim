@@ -13,6 +13,7 @@ return {
         typescriptreact = { 'eslint_d' },
         terraform = { 'tflint' },
         sql = { 'sqlfluff' },
+        java = { 'checkstyle' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
