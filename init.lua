@@ -622,6 +622,7 @@ require('lazy').setup({
         json = { { 'prettierd', 'prettier' } },
         sql = { { 'sqlfmt' } },
         java = { { 'clang-format' } },
+        yaml = { { 'yamlfmt' } },
       },
     },
   },
