@@ -623,6 +623,7 @@ require('lazy').setup({
         sql = { { 'sqlfmt' } },
         java = { { 'clang-format' } },
         yaml = { { 'yamlfmt' } },
+        terraform = { { 'hclfmt' } },
       },
     },
   },
