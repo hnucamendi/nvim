@@ -1,7 +1,9 @@
-local map = function(keys, func, desc, mode)
-	mode = mode or "n"
-	desc = desc or ""
-	vim.keymap.set(mode, keys, func, { desc = desc })
+local map = function(keys, func, opts)
+	opts = opts or {}
+	local mode = opts.mode or "n"
+	local desc = opts.desc or ""
+	local remap = opts.remap or false
+	vim.keymap.set(mode, keys, func, { desc = desc, remap = remap })
 end
 
 -- [[ Setting options ]]
@@ -92,7 +94,7 @@ vim.opt.scrolloff = 10
 map("<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
+map("<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -100,7 +102,7 @@ map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-map("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode", "t")
+map("<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode", mode = "t" })
 
 -- TIP: Disable arrow keys in normal mode
 map("<left>", '<cmd>echo "Use h to move!!"<CR>')
@@ -120,24 +122,29 @@ map("<C-k>", "<C-w><C-k>", "Move focus to the upper window")
 map("<leader>n", function()
 	vim.opt.relativenumber = false
 	vim.opt.number = not vim.opt.number:get()
-end, "toggle line number")
+end, { desc = "toggle line number" })
 
 map("<leader>rn", function()
 	vim.opt.number = true
 	vim.opt.relativenumber = not vim.opt.relativenumber:get()
-end, "toggle relative line number")
+end, { desc = "toggle relative line number" })
 
 -- Move lines
-map("<C-k>", ":m .-2<CR>==", "Move current line up")
-map("<C-j>", ":m .+1<CR>==", "Move current line down")
-map("<C-k>", ":m '<-2<CR>gv=gv", "Move selected lines up", "v")
-map("<C-j>", ":m '>+1<CR>gv=gv", "Move selected lines down", "v")
+map("<C-k>", ":m .-2<CR>==", { desc = "Move current line up" })
+map("<C-j>", ":m .+1<CR>==", { desc = "Move current line down" })
+map("<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up", mode = "v" })
+map("<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down", mode = "v" })
 
 -- Duplicate the current line down, respecting repeat counts
 map("<leader>j", function()
 	local count = vim.v.count == 0 and 1 or vim.v.count -- Default to 1 if no count is provided
 	vim.cmd("normal! yy" .. count .. "p") -- Yank the current line and paste `count` times below
-end, "Duplicate current line down")
+end, { desc = "Duplicate current line down" })
+
+map("<leader>cc", "gcc", { desc = "[C]omment line of [C]ode", remap = true })
+map("<leader>cc", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap = true })
+
+-- map("<leader>dX, "<C-R>%<CR>")
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
