@@ -182,17 +182,34 @@ map("<leader>dX", ":DeleteFile!<CR>", { desc = "[D]elete current file AND buffer
 map("<leader>dF", ":DeleteFile<CR>", { desc = "[D]elete current [F]ile" })
 
 map("<leader>T", function()
-	local buf = vim.api.nvim_create_buf(false, true) -- Create a scratch buffer
-	vim.api.nvim_open_win(buf, true, {
-		relative = "editor",
-		row = vim.o.lines - 10, -- Place it at the bottom
-		col = 0,
-		width = vim.o.columns,
-		height = 10,
-		style = "minimal",
-	})
-	vim.fn.termopen(vim.o.shell) -- Open terminal in the buffer
-end, { desc = "Open scratch terminal" })
+	-- Create a scratch buffer for the terminal
+	local buf = vim.api.nvim_create_buf(false, true)
+
+	-- Open a horizontal split and set it to the scratch buffer
+	vim.cmd("belowright split")
+	vim.api.nvim_win_set_buf(0, buf)
+
+	-- Resize the split to 10 lines
+	vim.cmd("resize 10")
+
+	-- Open the terminal in the buffer
+	vim.fn.termopen(vim.o.shell)
+
+	-- Set options for the terminal buffer
+	vim.bo[buf].buftype = "terminal"
+	vim.bo[buf].bufhidden = "hide" -- Allows the buffer to close without saving
+	vim.bo[buf].modifiable = false -- Prevents accidental edits to the terminal
+
+	-- Set window options for a clean terminal experience
+	vim.wo.number = false -- Disable line numbers
+	vim.wo.relativenumber = false -- Disable relative numbers
+	vim.wo.signcolumn = "no" -- Disable sign column
+	vim.wo.cursorline = false -- Disable cursorline
+	vim.wo.winfixheight = true -- Fix the height of the terminal window
+
+	-- Automatically enter insert mode in the terminal
+	vim.cmd("startinsert")
+end, { desc = "Open scratch terminal in horizontal split" })
 
 vim.keymap.set("n", "<leader>H", function()
 	vim.cmd("split") -- Open a horizontal split
