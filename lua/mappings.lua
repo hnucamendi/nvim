@@ -109,7 +109,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -180,6 +180,34 @@ map("<leader>cc", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap =
 
 map("<leader>dX", ":DeleteFile!<CR>", { desc = "[D]elete current file AND buffer (Not recoverable)" })
 map("<leader>dF", ":DeleteFile<CR>", { desc = "[D]elete current [F]ile" })
+
+map("<leader>T", function()
+	local buf = vim.api.nvim_create_buf(false, true) -- Create a scratch buffer
+	vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		row = vim.o.lines - 10, -- Place it at the bottom
+		col = 0,
+		width = vim.o.columns,
+		height = 10,
+		style = "minimal",
+	})
+	vim.fn.termopen(vim.o.shell) -- Open terminal in the buffer
+end, { desc = "Open scratch terminal" })
+
+vim.keymap.set("n", "<leader>H", function()
+	vim.cmd("split") -- Open a horizontal split
+	vim.cmd("enew") -- Create a new empty buffer
+	vim.bo.buftype = "nofile" -- Set buffer as scratch (not backed by a file)
+	vim.bo.bufhidden = "hide" -- Hide buffer when abandoned
+	vim.bo.swapfile = false -- Disable swap file
+end, { desc = "Open Scratch Buffer" })
+
+-- Move to the next buffer
+map("<Tab>", ":bnext<CR>", { desc = "Next buffer" })
+-- Move to the previous buffer
+map("<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
+-- Close the current buffer
+map("<leader>bd", ":bd<CR>", { desc = "Close buffer" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`

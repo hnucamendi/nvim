@@ -32,7 +32,6 @@ return { -- Collection of various small independent plugins/modules
 		end
 
 		require("mini.icons").setup()
-		require("mini.tabline").setup()
 
 		-- ... and there is more!
 		--  Check out: https://github.com/echasnovski/mini.nvim
