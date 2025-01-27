@@ -164,10 +164,10 @@ map("<leader>rn", function()
 end, { desc = "toggle relative line number" })
 
 -- Move lines
-map("<C-k>", ":m .-2<CR>==", { desc = "Move current line up" })
-map("<C-j>", ":m .+1<CR>==", { desc = "Move current line down" })
-map("<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up", mode = "v" })
-map("<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down", mode = "v" })
+map("<A-k>", ":m .-2<CR>==", { desc = "Move current line up" })
+map("<A-j>", ":m .+1<CR>==", { desc = "Move current line down" })
+map("<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up", mode = "v" })
+map("<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down", mode = "v" })
 
 -- Duplicate the current line down, respecting repeat counts
 map("<leader>j", function()
@@ -175,8 +175,8 @@ map("<leader>j", function()
 	vim.cmd("normal! yy" .. count .. "p") -- Yank the current line and paste `count` times below
 end, { desc = "Duplicate current line down" })
 
-map("<leader>cc", "gcc", { desc = "[C]omment line of [C]ode", remap = true })
-map("<leader>cc", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap = true })
+map("<leader>-", "gcc", { desc = "[C]omment line of [C]ode", remap = true })
+map("<leader>-", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap = true })
 
 map("<leader>dX", ":DeleteFile!<CR>", { desc = "[D]elete current file AND buffer (Not recoverable)" })
 map("<leader>dF", ":DeleteFile<CR>", { desc = "[D]elete current [F]ile" })
