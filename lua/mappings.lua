@@ -6,6 +6,40 @@ local map = function(keys, func, opts)
 	vim.keymap.set(mode, keys, func, { desc = desc, remap = remap })
 end
 
+vim.api.nvim_create_user_command("DeleteFile", function(args)
+	local file = vim.fn.expand("%:p") -- Get the absolute path of the current file
+
+	-- Ensure the file exists before attempting to delete
+	if vim.fn.filereadable(file) == 0 then
+		print("Error: File does not exist or is not readable: " .. file)
+		return
+	end
+
+	-- Confirm deletion
+	if vim.fn.confirm("Delete file and its buffer (Non-Recoverable)?\n" .. file, "&Yes\n&No") == 1 then
+		-- Delete the buffer if bang is used
+		if args.bang then
+			vim.cmd("bdelete!")
+		end
+
+		-- Attempt to delete the file
+		local success, err = pcall(os.remove, file)
+		if success then
+			-- Print appropriate success message
+			if args.bang then
+				print("File and buffer have been nuked: " .. file)
+			else
+				print("File has been nuked: " .. file)
+			end
+		else
+			print("Error deleting file: " .. err)
+		end
+	end
+end, {
+	bang = true, -- Allow the `!` modifier for "nuke" mode
+	desc = "Delete current file (and buffer if bang `!` is used)",
+})
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -144,7 +178,8 @@ end, { desc = "Duplicate current line down" })
 map("<leader>cc", "gcc", { desc = "[C]omment line of [C]ode", remap = true })
 map("<leader>cc", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap = true })
 
--- map("<leader>dX, "<C-R>%<CR>")
+map("<leader>dX", ":DeleteFile!<CR>", { desc = "[D]elete current file AND buffer (Not recoverable)" })
+map("<leader>dF", ":DeleteFile<CR>", { desc = "[D]elete current [F]ile" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
