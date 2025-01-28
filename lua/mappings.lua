@@ -181,7 +181,10 @@ map("<leader>-", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap = 
 map("<leader>dX", ":DeleteFile!<CR>", { desc = "[D]elete current file AND buffer (Not recoverable)" })
 map("<leader>dF", ":DeleteFile<CR>", { desc = "[D]elete current [F]ile" })
 
-map("<leader>T", function()
+vim.keymap.set("n", "<leader>T", function()
+	-- Get the current buffer's directory
+	local current_dir = vim.fn.expand("%:p:h")
+
 	-- Create a scratch buffer for the terminal
 	local buf = vim.api.nvim_create_buf(false, true)
 
@@ -192,8 +195,8 @@ map("<leader>T", function()
 	-- Resize the split to 10 lines
 	vim.cmd("resize 10")
 
-	-- Open the terminal in the buffer
-	vim.fn.termopen(vim.o.shell)
+	-- Open the terminal in the buffer and set its working directory
+	vim.fn.termopen(vim.o.shell, { cwd = current_dir })
 
 	-- Set options for the terminal buffer
 	vim.bo[buf].buftype = "terminal"
@@ -209,7 +212,7 @@ map("<leader>T", function()
 
 	-- Automatically enter insert mode in the terminal
 	vim.cmd("startinsert")
-end, { desc = "Open scratch terminal in horizontal split" })
+end, { desc = "Open scratch terminal in horizontal split at current buffer's path" })
 
 vim.keymap.set("n", "<leader>H", function()
 	vim.cmd("split") -- Open a horizontal split
