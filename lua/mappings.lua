@@ -188,31 +188,22 @@ vim.keymap.set("n", "<leader>T", function()
 	-- Create a scratch buffer for the terminal
 	local buf = vim.api.nvim_create_buf(false, true)
 
-	-- Open a horizontal split and set it to the scratch buffer
-	vim.cmd("belowright split")
+	-- Open a horizontal split at 15% height
+	vim.cmd("belowright 15sp")
 	vim.api.nvim_win_set_buf(0, buf)
-
-	-- Resize the split to 10 lines
-	vim.cmd("resize 10")
 
 	-- Open the terminal in the buffer and set its working directory
 	vim.fn.termopen(vim.o.shell, { cwd = current_dir })
 
-	-- Set options for the terminal buffer
-	vim.bo[buf].buftype = "terminal"
-	vim.bo[buf].bufhidden = "hide" -- Allows the buffer to close without saving
-	vim.bo[buf].modifiable = false -- Prevents accidental edits to the terminal
-
-	-- Set window options for a clean terminal experience
-	vim.wo.number = false -- Disable line numbers
-	vim.wo.relativenumber = false -- Disable relative numbers
-	vim.wo.signcolumn = "no" -- Disable sign column
-	vim.wo.cursorline = false -- Disable cursorline
-	vim.wo.winfixheight = true -- Fix the height of the terminal window
+	-- Apply terminal window-specific options (using vim.wo for the current window)
+	vim.wo.number = false
+	vim.wo.relativenumber = false
+	vim.wo.signcolumn = "no"
+	vim.wo.cursorline = false
 
 	-- Automatically enter insert mode in the terminal
 	vim.cmd("startinsert")
-end, { desc = "Open scratch terminal in horizontal split at current buffer's path" })
+end, { desc = "Open terminal at 15% height" })
 
 vim.keymap.set("n", "<leader>H", function()
 	vim.cmd("split") -- Open a horizontal split
