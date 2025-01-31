@@ -214,11 +214,13 @@ vim.keymap.set("n", "<leader>H", function()
 end, { desc = "Open Scratch Buffer" })
 
 -- Move to the next buffer
-map("<Tab>", ":bnext<CR>", { desc = "Next buffer" })
+map("<Tab>", ":bNext<CR>", { desc = "Next buffer" })
 -- Move to the previous buffer
-map("<S-Tab>", ":bprev<CR>", { desc = "Previous buffer" })
+map("<S-Tab>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- Close the current buffer
-map("<leader>bd", ":bd<CR>", { desc = "Close buffer" })
+map("<leader>bd", ":bdelete<CR>", { desc = "Close buffer" })
+
+map("<leader>e", ":Explore<CR>", { desc = "[E]xplore Open Netrw" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
