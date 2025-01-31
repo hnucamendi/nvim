@@ -177,6 +177,7 @@ return {
 			eslint = {},
 			cssls = {},
 			html = {},
+      markdown_oxide = {},
 
 			lua_ls = {
 				-- cmd = { ... },

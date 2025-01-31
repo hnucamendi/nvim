@@ -7,6 +7,13 @@ return {
 			local lint = require("lint")
 			lint.linters_by_ft = {
 				markdown = { "markdownlint" },
+				terraform = { "tflint" },
+				json = { "jsonlint" },
+				dockerfile = { "hadolint" },
+				javascript = { "eslint_d" },
+				javascriptreact = { "eslint_d" },
+				typescript = { "eslint_d" },
+				typescriptreact = { "eslint_d" },
 			}
 
 			-- To allow other plugins to add linters to require('lint').linters_by_ft,
