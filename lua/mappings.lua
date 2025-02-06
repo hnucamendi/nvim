@@ -63,6 +63,9 @@ vim.opt.tabstop = 2 -- Tab width is 2 spaces
 vim.opt.shiftwidth = 2 -- Indentation is 2 spaces
 vim.opt.softtabstop = 2 -- Tab key inserts 2 spaces
 
+-- Turn off line wraps
+vim.opt.wrap = false
+
 -- Override local tabstop settings on BufEnter
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
@@ -87,6 +90,7 @@ vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
@@ -96,7 +100,7 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = "yes"
 
 -- Decrease update time
-vim.opt.updatetime = 250
+vim.opt.updatetime = 50
 
 -- Decrease mapped sequence wait time
 vim.opt.timeoutlen = 300
@@ -118,7 +122,12 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 8
+
+vim.opt.isfname:append("@-@")
+
+-- Turn off Swapfile
+-- vim.opt.swapfile = false
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
