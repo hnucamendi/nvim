@@ -26,6 +26,7 @@ return {
 				javascriptreact = { "eslint_d" },
 				typescript = { "eslint_d" },
 				typescriptreact = { "eslint_d" },
+				yaml = { "yamllint", "actionlint" },
 			}
 
 			-- Create autocommand which carries out the actual linting

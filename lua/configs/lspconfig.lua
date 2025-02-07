@@ -167,7 +167,7 @@ return {
 			gopls = {},
 			omnisharp = {},
 			terraformls = {},
-      tflint = {},
+			tflint = {},
 
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
@@ -179,7 +179,8 @@ return {
 			eslint = {},
 			cssls = {},
 			html = {},
-      markdown_oxide = {},
+			yamlls = {},
+			markdown_oxide = {},
 
 			lua_ls = {
 				-- cmd = { ... },

@@ -41,6 +41,7 @@ return { -- Autoformat
 			typescript = { "prettierd" },
 			typescriptreact = { "prettier", "prettierd", stop_after_first = true },
 			markdown = { "prettier" },
+			yaml = { "prettier" },
 			cpp = { "clang-format" },
 			css = { "prettier" },
 			html = { "prettier" },
