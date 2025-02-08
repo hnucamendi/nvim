@@ -245,21 +245,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-local auto_save_callback = function()
-	if vim.bo.modified and vim.bo.modifiable then
-		vim.cmd({ cmd = "write", bang = true })
-	end
-end
-
-local auto_saving_group = vim.api.nvim_create_augroup("auto-saving", { clear = true })
-vim.api.nvim_create_autocmd({ "BufLeave", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ "BufLeave", "InsertLeave", "VimLeavePre", "FocusLost" }, {
 	desc = "Save on BufLeave and InsertLeave",
-	group = auto_saving_group,
-	callback = auto_save_callback,
+	group = vim.api.nvim_create_augroup("auto-saving", { clear = true }),
+	callback = function()
+		if vim.bo.modified and vim.bo.modifiable then
+			vim.cmd("silent! wa!")
+		end
+	end,
 })
-
--- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
--- 	desc = "Autosave after period of inactivity",
--- 	group = auto_saving_group,
--- 	callback = auto_save_callback,
--- })
