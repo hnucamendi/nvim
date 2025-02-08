@@ -245,16 +245,24 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufLeave", {
-	desc = "Save on BufLeave",
-	group = vim.api.nvim_create_augroup("auto-saving", { clear = true }),
-	callback = function()
-		local autosave_filetypes = { go = true, js = true, lua = true } -- list of filetypes to autosave on BufLeave
-		local bufnr = vim.api.nvim_get_current_buf() -- Current buffer index
-		local file = vim.fn.expand("%:t") -- The tail end of the current filepath
-
-		if autosave_filetypes[vim.bo[bufnr].filetype] then
-			vim.cmd({ cmd = "write", args = { file } })
-		end
-	end,
-})
+-- local auto_save_callback = function()
+-- 	local autosave_filetypes = { go = true, js = true, ts = true, lua = true } -- list of filetypes to autosave on BufLeave
+-- 	local bufnr = vim.api.nvim_get_current_buf() -- Current buffer index
+-- 	local file = vim.fn.expand("%:t") -- The tail end of the current filepath
+--
+-- 	if autosave_filetypes[vim.bo[bufnr].filetype] then
+-- 		vim.cmd({ cmd = "write", args = { file }, bang = true })
+-- 	end
+-- end
+-- local auto_saving_group = vim.api.nvim_create_augroup("auto-saving", { clear = true })
+-- vim.api.nvim_create_autocmd({ "BufLeave", "InsertLeave" }, {
+-- 	desc = "Save on BufLeave and InsertLeave",
+-- 	group = auto_saving_group,
+-- 	callback = auto_save_callback,
+-- })
+--
+-- vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+-- 	desc = "Autosave after period of inactivity",
+-- 	group = vim.api.nvim_create_augroup("test", { clear = true }),
+-- 	callback = auto_save_callback,
+-- })
