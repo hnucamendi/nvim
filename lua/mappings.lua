@@ -190,9 +190,24 @@ map("<leader>-", "gc", { desc = "[C]omment line of [C]ode", mode = "v", remap = 
 map("<leader>dX", ":DeleteFile!<CR>", { desc = "[D]elete current file AND buffer (Not recoverable)" })
 map("<leader>dF", ":DeleteFile<CR>", { desc = "[D]elete current [F]ile" })
 
+local function get_project_root()
+	local cwd = vim.fn.getcwd()
+	local root_markers = { ".git", "package.json", "Makefile", "Dockerfile" }
+
+	while cwd ~= "/" do
+		for _, marker in ipairs(root_markers) do
+			if vim.fn.isdirectory(cwd .. "/" .. marker) == 1 or vim.fn.filereadable(cwd .. "/" .. marker) == 1 then
+				return cwd
+			end
+		end
+		cwd = vim.fn.fnamemodify(cwd, ":h")
+	end
+	return nil
+end
+
 vim.keymap.set("n", "<leader>T", function()
 	-- Get the current buffer's directory
-	local current_dir = vim.fn.expand("%:p:h")
+	local root_dir = get_project_root()
 
 	-- Create a scratch buffer for the terminal
 	local buf = vim.api.nvim_create_buf(false, true)
@@ -202,7 +217,7 @@ vim.keymap.set("n", "<leader>T", function()
 	vim.api.nvim_win_set_buf(0, buf)
 
 	-- Open the terminal in the buffer and set its working directory
-	vim.fn.termopen(vim.o.shell, { cwd = current_dir })
+	vim.fn.termopen(vim.o.shell, { cwd = root_dir })
 
 	-- Apply terminal window-specific options (using vim.wo for the current window)
 	vim.wo.number = false
@@ -217,6 +232,7 @@ end, { desc = "Open terminal at 15% height" })
 vim.keymap.set("n", "<leader>H", function()
 	vim.cmd("split") -- Open a horizontal split
 	vim.cmd("enew") -- Create a new empty buffer
+	vim.wo.number = true
 	vim.bo.buftype = "nofile" -- Set buffer as scratch (not backed by a file)
 	vim.bo.bufhidden = "hide" -- Hide buffer when abandoned
 	vim.bo.swapfile = false -- Disable swap file
