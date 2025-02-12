@@ -99,6 +99,10 @@ vim.opt.smartcase = true
 -- Keep signcolumn on by default
 vim.opt.signcolumn = "yes"
 
+-- Turn off Swapfile and Backup
+vim.opt.swapfile = false
+vim.opt.backup = false
+
 -- Decrease update time
 vim.opt.updatetime = 50
 
