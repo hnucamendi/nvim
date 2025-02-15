@@ -211,7 +211,7 @@ end
 
 vim.keymap.set("n", "<leader>T", function()
 	-- Get the current buffer's directory
-	local root_dir = get_project_root()
+  local current_dir = vim.fn.expand("%:p:h")
 
 	-- Create a scratch buffer for the terminal
 	local buf = vim.api.nvim_create_buf(false, true)
@@ -221,7 +221,7 @@ vim.keymap.set("n", "<leader>T", function()
 	vim.api.nvim_win_set_buf(0, buf)
 
 	-- Open the terminal in the buffer and set its working directory
-	vim.fn.termopen(vim.o.shell, { cwd = root_dir })
+	vim.fn.termopen(vim.o.shell, { cwd = current_dir })
 
 	-- Apply terminal window-specific options (using vim.wo for the current window)
 	vim.wo.number = false
