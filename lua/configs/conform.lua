@@ -3,7 +3,7 @@ return { -- Autoformat
 	event = { "BufWritePre" },
 	cmd = { "ConformInfo" },
 	keys = {
-    -- hel
+		-- hel
 		{
 			"<leader>f",
 			function()
@@ -44,6 +44,7 @@ return { -- Autoformat
 			markdown = { "prettier" },
 			yaml = { "prettier" },
 			cpp = { "clang-format" },
+			java = { "clang-format" },
 			css = { "prettier" },
 			html = { "prettier" },
 			go = { "goimports", "gofmt" },
