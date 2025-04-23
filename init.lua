@@ -55,20 +55,16 @@ require("lazy").setup({
 			},
 		},
 	},
-
 	{
-		"projekt0n/github-nvim-theme",
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
-		name = "github-theme",
 		init = function()
-			-- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			vim.cmd.colorscheme("github_dark_default")
-			-- You can configure highlights by doing something like:
-			vim.cmd.hi("Comment gui=none")
+			-- latte, frape, macchiato, mocha
+			-- vim.cmd.colorscheme("catppuccin-latte")
+			vim.cmd.colorscheme("catppuccin-mocha")
 		end,
 	},
-
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
 	-- Or use telescope!
 	-- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
