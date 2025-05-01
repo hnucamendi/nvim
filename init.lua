@@ -55,14 +55,23 @@ require("lazy").setup({
 			},
 		},
 	},
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin",
+	-- 	priority = 1000,
+	-- 	init = function()
+	-- 		-- latte, frape, macchiato, mocha
+	-- 		vim.cmd.colorscheme("catppuccin-latte")
+	-- 		-- vim.cmd.colorscheme("catppuccin-mocha")
+	-- 	end,
+	-- },
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
+		config = true,
 		init = function()
-			-- latte, frape, macchiato, mocha
-			-- vim.cmd.colorscheme("catppuccin-latte")
-			vim.cmd.colorscheme("catppuccin-mocha")
+			vim.o.background = "light"
+			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 	-- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
