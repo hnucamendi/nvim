@@ -70,7 +70,6 @@ require("lazy").setup({
 		priority = 1000,
 		config = true,
 		init = function()
-			vim.o.background = "light"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
