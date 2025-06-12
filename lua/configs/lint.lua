@@ -22,7 +22,7 @@ return {
 				terraform = { "tflint" },
 				json = { "jsonlint" },
 				dockerfile = { "hadolint" },
-        java = {"checkstyle"},
+				java = { "checkstyle" },
 				javascript = { "eslint_d" },
 				javascriptreact = { "eslint_d" },
 				typescript = { "eslint_d" },

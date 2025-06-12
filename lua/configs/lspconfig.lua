@@ -176,7 +176,7 @@ return {
 			--
 			-- But for many setups, the LSP (`ts_ls`) will work just fine
 
-      java_language_server = {},
+      ast_grep = {},
 			ts_ls = {},
 			eslint = {},
 			cssls = {},
