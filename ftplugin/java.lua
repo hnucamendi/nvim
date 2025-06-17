@@ -1,6 +1,6 @@
 vim.schedule(function()
-  local status_ok, jdtls = pcall(require, "jdtls")
-  if not status_ok then
+  local ok, jdtls = pcall(require, "jdtls")
+  if not ok then
     vim.notify("nvim-jdtls not found", vim.log.levels.ERROR)
     return
   end
@@ -11,14 +11,21 @@ vim.schedule(function()
     return
   end
 
-  local java_exec = java_home .. "/bin/java"
-  local jdtls_path = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
-  local launcher_jar = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
-  local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+  local java = java_home .. "/bin/java"
+  if vim.fn.executable(java) == 0 then
+    vim.notify("Java executable not found: " .. java, vim.log.levels.ERROR)
+    return
+  end
+
+  local data = vim.fn.stdpath("data")
+  local jdtls_pkg = data .. "/mason/packages/jdtls"
+  local launcher = vim.fn.glob(jdtls_pkg .. "/plugins/org.eclipse.equinox.launcher_*.jar")
+  local os_config = "config_mac"  -- change to config_linux or config_win on other OSes
+  local workspace = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
   local config = {
     cmd = {
-      java_exec,
+      java,
       "-Declipse.application=org.eclipse.jdt.ls.core.id1",
       "-Dosgi.bundles.defaultStartLevel=4",
       "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -28,9 +35,9 @@ vim.schedule(function()
       "--add-modules=ALL-SYSTEM",
       "--add-opens", "java.base/java.util=ALL-UNNAMED",
       "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-      "-jar", launcher_jar,
-      "-configuration", jdtls_path .. "/config_mac", -- or config_linux/config_win if applicable
-      "-data", workspace_dir,
+      "-jar", launcher,
+      "-configuration", jdtls_pkg .. "/" .. os_config,
+      "-data", workspace,
     },
     root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml" }),
     settings = {
@@ -38,7 +45,6 @@ vim.schedule(function()
         configuration = {
           runtimes = {
             { name = "JavaSE-17", path = java_home },
-            -- Add others if needed
           },
         },
         inlayHints = { parameterNames = { enabled = "all" } },
@@ -46,10 +52,7 @@ vim.schedule(function()
     },
     init_options = {
       bundles = vim.split(
-        vim.fn.glob(
-          vim.fn.stdpath("data") ..
-            "/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"
-        ),
+        vim.fn.glob(data .. "/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
         "\n"
       ),
     },
