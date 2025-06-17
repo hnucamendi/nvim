@@ -4,7 +4,9 @@ local jdtls = require("jdtls")
 -- Tell jdtls to run under the Java version set in your shell
 vim.env.JAVA_HOME = os.getenv("JAVA_HOME") -- make sure it's set before launching Neovim
 
-local java_cmd = vim.env.JAVA_HOME .. "/bin/java"
+-- local java_cmd = vim.env.JAVA_HOME .. "/bin/java"
+local jdtls_path = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
+local java_exec = os.getenv('JAVA_HOME') .. '/bin/java'
 
 local config = {
 	cmd = {
