@@ -44,7 +44,7 @@ return { -- Autoformat
 			markdown = { "prettier" },
 			yaml = { "prettier" },
 			cpp = { "clang-format" },
-			java = { "clang-format" },
+			-- java = { "clang-format" },
 			css = { "prettier" },
 			html = { "prettier" },
 			go = { "goimports", "gofmt" },
