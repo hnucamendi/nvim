@@ -4,11 +4,12 @@ return {
 	cmd = "FzfLua",
 	config = function()
 		require("fzf-lua").setup({
-			files = { fd_opts = "--hidden --no-ignore -g '!.git/'" },
-			grep = { rg_opts = "--hidden --no-ignore" },
+			files = { fd_opts = [[--color=never --hidden --type f --type l --exclude --no-ignore -g '!.git/']] },
+			grep = {
+				rg_opts = "--hidden --no-ignore --column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e",
+			},
 			oldfiles = { include_current_session = true },
 			previewers = { builtin = { syntax_limit_b = 1024 * 100 } },
-			winopts = { width = 0.8, height = 0.8, row = 0.5, col = 0.5 },
 		})
 
 		local fzf = require("fzf-lua")

@@ -59,21 +59,27 @@ return {
 				end
 
 				local fzf = require("fzf-lua")
+
+				map("gr", function()
+					fzf.lsp_references({ jump1 = false })
+				end, "[G]oto [R]eferences")
+
 				map("gd", function()
 					fzf.lsp_definitions({ jump1 = true })
 				end, "[G]oto [D]efinition")
-				map("gr", function()
-					fzf.lsp_references({ jump1 = true })
-				end, "[G]oto [R]eferences")
-				map("gI", function()
-					fzf.lsp_implementations({ jump1 = true })
-				end, "[G]oto [I]mplementation")
+
 				map("<leader>D", function()
 					fzf.lsp_typedefs({ jump1 = true })
 				end, "Type [D]efinition")
+
+				map("gI", function()
+					fzf.lsp_implementations({ jump1 = false })
+				end, "[G]oto [I]mplementation")
+
 				map("<leader>ds", function()
 					fzf.lsp_document_symbols()
 				end, "[D]ocument [S]ymbols")
+
 				map("<leader>ws", function()
 					fzf.lsp_live_workspace_symbols()
 				end, "[W]orkspace [S]ymbols")
@@ -84,11 +90,15 @@ return {
 
 				-- Execute a code action, usually your cursor needs to be on top of an error
 				-- or a suggestion from your LSP for this to activate.
-				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+				map("<leader>ca", function()
+					fzf.lsp_code_actions()
+				end, "[C]ode [A]ction", { "n", "x" })
 
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header.
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+				map("gD", function()
+					fzf.lsp_declarations({ jump1 = true })
+				end, "[G]oto [D]eclaration")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
