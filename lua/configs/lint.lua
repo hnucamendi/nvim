@@ -29,6 +29,7 @@ return {
 				typescriptreact = { "eslint_d" },
 				yaml = { "yamllint", "actionlint" },
 				go = { "golangcilint" },
+				makefile = { "checkmake" },
 			}
 
 			-- Create autocommand which carries out the actual linting
