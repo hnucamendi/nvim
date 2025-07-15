@@ -70,10 +70,12 @@ vim.opt.wrap = false
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	callback = function()
-		vim.opt_local.expandtab = true -- Converts tabs to spaces globally
-		vim.opt_local.tabstop = 2 -- Tab width is 2 spaces
-		vim.opt_local.shiftwidth = 2 -- Indentation is 2 spaces
-		vim.opt.softtabstop = 2 -- Tab key inserts 2 spaces
+		if vim.bo.filetype ~= "make" then
+			vim.opt_local.expandtab = true -- Converts tabs to spaces globally
+			vim.opt_local.tabstop = 2 -- Tab width is 2 spaces
+			vim.opt_local.shiftwidth = 2 -- Indentation is 2 spaces
+			vim.opt.softtabstop = 2 -- Tab key inserts 2 spaces
+		end
 	end,
 })
 
@@ -211,7 +213,7 @@ end
 
 vim.keymap.set("n", "<leader>T", function()
 	-- Get the current buffer's directory
-  local current_dir = vim.fn.expand("%:p:h")
+	local current_dir = vim.fn.expand("%:p:h")
 
 	-- Create a scratch buffer for the terminal
 	local buf = vim.api.nvim_create_buf(false, true)
