@@ -181,7 +181,7 @@ return {
 			--
 			-- But for many setups, the LSP (`ts_ls`) will work just fine
 
-      bashls = {},
+			bashls = {},
 			jdtls = {},
 			ts_ls = {},
 			eslint = {},
@@ -189,6 +189,7 @@ return {
 			html = {},
 			yamlls = {},
 			markdown_oxide = {},
+			pylsp = {},
 
 			lua_ls = {
 				-- cmd = { ... },
