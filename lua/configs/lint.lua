@@ -30,6 +30,7 @@ return {
 				yaml = { "yamllint", "actionlint" },
 				go = { "golangcilint" },
 				makefile = { "checkmake" },
+				python = { "ruff" },
 			}
 
 			-- Create autocommand which carries out the actual linting

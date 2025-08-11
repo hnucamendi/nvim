@@ -48,6 +48,7 @@ return { -- Autoformat
 			css = { "prettier" },
 			html = { "prettier" },
 			go = { "goimports", "gofmt" },
+			python = { "black" },
 		},
 	},
 }
