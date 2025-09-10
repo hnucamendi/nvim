@@ -1,5 +1,4 @@
 return {
-
 	{ -- Linting
 		"mfussenegger/nvim-lint",
 		event = { "BufReadPre", "BufNewFile" },
@@ -121,5 +120,29 @@ return {
 				callback = debounce(100, run_lint),
 			})
 		end,
+	},
+	-- Auto-install nvim-lint linters via Mason
+	{
+		"rshkarin/mason-nvim-lint",
+		-- It’s fine to depend on the Mason you already load in lspconfig.lua
+		-- If you prefer to declare it here too, use your Mason fork name.
+		dependencies = { "mfussenegger/nvim-lint" },
+		opts = {
+			-- install typos manually
+			ensure_installed = {
+				"markdownlint",
+				"golangcilint", -- maps internally to Mason's golangci-lint
+				"tflint",
+				"jsonlint",
+				"hadolint",
+				"checkstyle",
+				"eslint_d",
+				"yamllint",
+				"actionlint",
+				"checkmake",
+				"ruff",
+			},
+			automatic_installation = false,
+		},
 	},
 }
