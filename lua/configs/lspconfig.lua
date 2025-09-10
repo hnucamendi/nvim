@@ -182,7 +182,6 @@ return {
 			yamlls = {},
 			markdown_oxide = {},
 			pylsp = {},
-
 			lua_ls = {
 				settings = {
 					Lua = {
@@ -218,6 +217,7 @@ return {
 			"black",
 			"biome",
 			"gofumpt",
+      "terraform"
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

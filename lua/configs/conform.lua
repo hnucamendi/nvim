@@ -29,6 +29,7 @@ return {
 			html = { "prettier" },
 			go = { "gofumpt", "goimports" },
 			python = { "black" },
+			terraform = { "terraform" },
 		},
 	},
 }
