@@ -8,14 +8,12 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 local aug = vim.api.nvim_create_augroup("AppearanceAuto", { clear = true })
-
 local function safe_apply()
-  -- Defer slightly so plugins finish loading
   vim.schedule(function()
-    pcall(require, "util.appearance") -- ensure module cached
+    pcall(require, "util.appearance")
     local ok, appearance = pcall(require, "util.appearance")
-    if ok and appearance.apply_gruvbox_by_system then
-      appearance.apply_gruvbox_by_system()
+    if ok and appearance.set_vim_background then
+      appearance.set_vim_background()
     end
   end)
 end
@@ -33,7 +31,7 @@ vim.api.nvim_create_autocmd("FocusGained", {
 })
 
 -- Manual sync command
-vim.api.nvim_create_user_command("GruvboxSyncSystem", function()
+vim.api.nvim_create_user_command("SyncSystemTheme", function()
   safe_apply()
-  vim.notify("Gruvbox synced to macOS appearance", vim.log.levels.INFO)
+  vim.notify("System theme synced to macOS appearance", vim.log.levels.INFO)
 end, {})
