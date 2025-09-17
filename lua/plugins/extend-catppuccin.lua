@@ -9,11 +9,10 @@ return {
         light = "latte",
         dark = "frappe",
       },
-      transparent_background = false,
     },
-  },
-  {
-    "LazyVim/LazyVim",
-    opts = { colorscheme = "catppuccin" },
+    config = function(_, opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
+    end,
   },
 }
