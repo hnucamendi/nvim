@@ -1,10 +1,10 @@
 {
   "LazyVim": { "branch": "main", "commit": "3a743f7f853bd90894259cd93432d77c688774b4" },
-  "SchemaStore.nvim": { "branch": "main", "commit": "68f3e590cabe4f07a1f64fa73dab0bd244b13cf5" },
+  "SchemaStore.nvim": { "branch": "main", "commit": "22f0c2f7c727a15b45b7bfcbbab533720223b840" },
   "auto-dark-mode.nvim": { "branch": "master", "commit": "e300259ec777a40b4b9e3c8e6ade203e78d15881" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
-  "catppuccin": { "branch": "main", "commit": "30fa4d122d9b22ad8b2e0ab1b533c8c26c4dde86" },
+  "catppuccin": { "branch": "main", "commit": "ff29b85e2dd9ca8f88a9238dbe319b11956ac5b3" },
   "cmake-tools.nvim": { "branch": "master", "commit": "88e07c6bff838a5bda2f461e9c1122b79ff0829f" },
   "codesnap.nvim": { "branch": "main", "commit": "be6d6b9a3b5e6999edbda76b16dace03d9bfcd3d" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
