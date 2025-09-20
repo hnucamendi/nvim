@@ -7,5 +7,11 @@ return {
     opts.dashboard.preset = opts.dashboard.preset or {}
 
     opts.dashboard.preset.header = art.scary
+
+    opts.picker = opts.picker or {}
+    opts.picker.hidden = true
+
+    opts.explorer = opts.explorer or {}
+    -- opts.explorer.hidden = true
   end,
 }
