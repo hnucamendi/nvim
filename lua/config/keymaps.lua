@@ -23,3 +23,15 @@ end, { desc = "Next Harpoon file" })
 map("<C-p>", function()
   harpoon:list():prev()
 end, { desc = "Previous Harpoon file" })
+
+map("<C-h>", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Toggle Harpoon menu" })
+
+map("<leader>a", function()
+  harpoon:list():add()
+end, { desc = "Add Harpoon file" })
+
+map("<leader>A", function()
+  harpoon:list():remove()
+end, { desc = "Remove Harpoon file" })
