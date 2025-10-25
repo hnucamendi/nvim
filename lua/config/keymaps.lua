@@ -9,6 +9,10 @@ local map = function(keys, func, opts)
   vim.keymap.set(mode, keys, func, { desc = desc, remap = remap })
 end
 
+-- Disable Snacks explorer binding from LazyVim defaults
+pcall(vim.keymap.del, "n", "<leader>e")
+map("<leader>e", vim.cmd.Ex, { desc = "Open netrw" })
+
 local harpoon = require("harpoon")
 harpoon:setup()
 

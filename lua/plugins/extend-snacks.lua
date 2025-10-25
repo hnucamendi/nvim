@@ -12,6 +12,6 @@ return {
     opts.picker.hidden = true
 
     opts.explorer = opts.explorer or {}
-    opts.explorer.enabled = true
+    opts.explorer.enabled = false
   end,
 }
