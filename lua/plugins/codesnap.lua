@@ -1,5 +1,6 @@
 return {
   "mistricky/codesnap.nvim",
+  tag = "v1.0.0",
   build = "make",
   config = function()
     require("codesnap").setup({
